@@ -83,9 +83,7 @@ for ($i=0; $i -lt $profiles.Count; $i++) {
   $proxyFlag = ""
   if ($i -lt $raw.Count) {
     $line = $raw[$i]
-    if ($line -match "^[^@]+@(.+)$") { $hostport = $Matches[1] }
-    elseif ($line -match "^([a-zA-Z0-9._-]+:\d+):[^:@]+:.+$") { $hostport = $Matches[1] }
-    else { $hostport = $line }
+    if ($line -match "^[^@]+@(.+)$") { $hostport = $Matches[1] } else { $hostport = $line }
     $proxyFlag = "--proxy-server=`"http=$hostport;https=$hostport`""
     Write-Host "Proxy: $hostport"
   } else {

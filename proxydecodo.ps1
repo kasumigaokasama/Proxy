@@ -1,12 +1,14 @@
 <#
-create-standalone-new-profiles.ps1
+proxydecodo.ps1
 
 Zweck:
 - Erstellt 10 KOMPLETT NEUE Standalone Chrome-Profile (leere Verzeichnisse),
   damit jede Instanz in einem separaten Chrome-Prozess mit eigenem Proxy laufen kann.
+- Liest Proxies im Decodo-Format: HOST:PORT:USERNAME:PASSWORD
+  Beispiel: isp.decodo.com:10004:spua7l2r0e:9kj2uEpiL~Fo3p9jsN
 - Erstellt für jedes Standalone-Profil einen Desktop-Shortcut mit:
     --user-data-dir="<StandalonePath>"
-    --proxy-server="http=IP:PORT;https=IP:PORT"  (ohne Credentials im Flag)
+    --proxy-server="http=HOST:PORT;https=HOST:PORT"  (ohne Credentials im Flag)
 WICHTIG: VORHER ALLE CHROME-FENSTER SCHLIESSEN.
 #>
 
@@ -56,7 +58,7 @@ for ($i=0; $i -lt $profiles.Count; $i++) {
     $friendly = Clean-Name $p.Name
 
     # Standalone Root: pro Friendly-Name ein Ordner
-    $dstRoot = Join-Path $standaloneBase $friendly
+    $dstRoot    = Join-Path $standaloneBase $friendly
     $dstDefault = Join-Path $dstRoot "Default"
 
     if (-not (Test-Path $dstRoot)) {
@@ -72,11 +74,16 @@ for ($i=0; $i -lt $profiles.Count; $i++) {
         New-Item -Path (Join-Path $dstDefault "README.txt") -ItemType File -Value "Dieses Profil wurde automatisch erstellt. Chrome initialisiert beim ersten Start die echten Dateien." | Out-Null
     }
 
-    # Proxy zuweisen (wenn vorhanden)
+    # Proxy zuweisen (Decodo-Format: HOST:PORT:USERNAME:PASSWORD)
     $proxyFlag = ""
     if ($i -lt $raw.Count) {
         $line = $raw[$i]
-        if ($line -match "^[^@]+@(.+)$") { $hostport = $Matches[1] } else { $hostport = $line }
+        # Decodo-Format: HOST:PORT:USER:PASS  ->  HOST:PORT extrahieren
+        if ($line -match "^([a-zA-Z0-9._-]+:\d+):[^:@]+:.+$") {
+            $hostport = $Matches[1]
+        } else {
+            $hostport = $line
+        }
         $proxyFlag = "--proxy-server=`"http=$hostport;https=$hostport`""
         Write-Host "Proxy für '$friendly': $hostport"
     } else {
@@ -94,7 +101,7 @@ for ($i=0; $i -lt $profiles.Count; $i++) {
     $sc.Arguments = $args
     $sc.WorkingDirectory = [System.IO.Path]::GetDirectoryName($chromeExe)
     $sc.WindowStyle = 1
-    $sc.Description = "Standalone Chrome für $friendly (eigener Prozess, evtl. Proxy)"
+    $sc.Description = "Standalone Chrome für $friendly (eigener Prozess, Decodo Proxy)"
     $sc.Save()
 
     Write-Host "Shortcut erstellt: $lnk"
@@ -102,4 +109,4 @@ for ($i=0; $i -lt $profiles.Count; $i++) {
 }
 
 Write-Host "Fertig. Starte jeden Shortcut EINZELN (Chrome vorher komplett schließen)."
-Write-Host "Beim ersten Start initialisiert Chrome das Profil (Default/Preferences etc.). Wenn ein Proxy gesetzt ist, erscheint ggf. das Proxy-Loginfenster beim ersten HTTPS-Aufruf."
+Write-Host "Beim ersten HTTPS-Aufruf erscheint das Proxy-Login-Fenster -> Username und Passwort aus der proxies.txt eingeben und 'Remember' anhaken."
