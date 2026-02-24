@@ -1,0 +1,13 @@
+# Decodo ISP Proxy Format: HOST:PORT:USERNAME:PASSWORD
+# Einfach deine Decodo-Zeilen hier eintragen, eine pro Zeile.
+# Leerzeilen und Zeilen mit # werden ignoriert.
+isp.decodo.com:10001:spua7l2r0e:9kj2uEpiL~Fo3p9jsN
+isp.decodo.com:10002:spua7l2r0e:9kj2uEpiL~Fo3p9jsN
+isp.decodo.com:10003:spua7l2r0e:9kj2uEpiL~Fo3p9jsN
+isp.decodo.com:10004:spua7l2r0e:9kj2uEpiL~Fo3p9jsN
+isp.decodo.com:10005:spua7l2r0e:9kj2uEpiL~Fo3p9jsN
+isp.decodo.com:10006:spua7l2r0e:9kj2uEpiL~Fo3p9jsN
+isp.decodo.com:10007:spua7l2r0e:9kj2uEpiL~Fo3p9jsN
+isp.decodo.com:10008:spua7l2r0e:9kj2uEpiL~Fo3p9jsN
+isp.decodo.com:10009:spua7l2r0e:9kj2uEpiL~Fo3p9jsN
+isp.decodo.com:10010:spua7l2r0e:9kj2uEpiL~Fo3p9jsN
