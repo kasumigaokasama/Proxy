@@ -12,106 +12,6 @@ Dieses Tool erstellt automatisch mehrere Chrome-Profile, wobei jedes Profil mit 
 
 ---
 
-## Alternative Proxy-Anbieter (deutsche & europäische Services)
-
-Neben InstantProxies.com gibt es auch deutsche und europäische Alternativen. Hier sind empfehlenswerte Anbieter:
-
-### 🇩🇪 Deutsche Proxy-Anbieter
-
-#### 1. **ProxyEmpire.io**
-- **Standort:** Europäische Server verfügbar
-- **Typ:** Residential & Datacenter Proxies
-- **Website:** [proxyempire.io](https://proxyempire.io)
-- **Besonderheit:** Große Auswahl an deutschen IP-Adressen
-- **Format:** Meist `USERNAME:PASSWORD@IP:PORT`
-
-#### 2. **Bright Data (ehem. Luminati)**
-- **Standort:** Globaler Anbieter mit deutschen IPs
-- **Typ:** Residential, Datacenter, Mobile
-- **Website:** [brightdata.com](https://brightdata.com)
-- **Besonderheit:** Premium-Anbieter, sehr zuverlässig
-- **Format:** `USERNAME:PASSWORD@brd.superproxy.io:PORT` oder direkte IPs
-
-#### 3. **IPRoyal**
-- **Standort:** EU-basiert
-- **Typ:** Residential, Datacenter, Mobile
-- **Website:** [iproyal.com](https://iproyal.com)
-- **Besonderheit:** Günstige EU-Proxies
-- **Format:** `USERNAME:PASSWORD@IP:PORT`
-
-#### 4. **Webshare.io**
-- **Standort:** EU & Deutsche Proxies verfügbar
-- **Typ:** Datacenter Proxies
-- **Website:** [webshare.io](https://webshare.io)
-- **Besonderheit:** Kostenlose Trial verfügbar
-- **Format:** `IP:PORT:USERNAME:PASSWORD` (muss konvertiert werden!)
-
-#### 5. **Smartproxy**
-- **Standort:** EU-Server verfügbar
-- **Typ:** Residential & Datacenter
-- **Website:** [smartproxy.com](https://smartproxy.com)
-- **Besonderheit:** Einfache Integration, deutsche IPs
-- **Format:** `USERNAME:PASSWORD@gate.smartproxy.com:PORT`
-
----
-
-## Welchen Proxy-Typ sollte ich wählen?
-
-### 🏢 **Datacenter Proxies** (empfohlen für Anfänger)
-**Vorteile:**
-- ✅ Sehr schnell (hohe Bandbreite)
-- ✅ Günstig (oft 1-3€ pro Proxy/Monat)
-- ✅ Stabile Verbindung
-- ✅ Ideal für: Social Media Automation, Web Scraping, Account-Management
-
-**Nachteile:**
-- ❌ Können von manchen Websites blockiert werden
-- ❌ Alle IPs aus Rechenzentren (weniger "natürlich")
-
-**Beste Anbieter:** Webshare.io, IPRoyal Datacenter, ProxyEmpire Datacenter
-
----
-
-### 🏠 **Residential Proxies**
-**Vorteile:**
-- ✅ Echte Privat-IPs (schwerer zu erkennen/blockieren)
-- ✅ Höhere Erfolgsrate bei streng geschützten Websites
-- ✅ Ideal für: E-Commerce, Sneaker-Bots, komplexe Scraping-Projekte
-
-**Nachteile:**
-- ❌ Teurer (oft 5-15€ pro GB Traffic)
-- ❌ Langsamer als Datacenter
-- ❌ IPs können sich ändern (rotating)
-
-**Beste Anbieter:** Smartproxy, Bright Data, IPRoyal Residential, ProxyEmpire
-
----
-
-### 📱 **Mobile Proxies**
-**Vorteile:**
-- ✅ Höchste Erfolgsrate (echte Mobilfunk-IPs)
-- ✅ Kaum Blockierungen
-- ✅ Ideal für: Social Media (Instagram, TikTok, etc.)
-
-**Nachteile:**
-- ❌ Sehr teuer (oft 40-100€ pro Proxy/Monat)
-- ❌ Langsamer als Datacenter
-
-**Beste Anbieter:** Smartproxy Mobile, Bright Data Mobile
-
----
-
-### 💡 **Empfehlung nach Verwendungszweck:**
-
-| Verwendungszweck | Empfohlener Typ | Geschätzte Kosten |
-|------------------|-----------------|-------------------|
-| Multi-Account Management (Social Media) | Datacenter oder Residential | 10-50€/Monat für 10 Proxies |
-| Web Scraping (kleine Projekte) | Datacenter | 10-30€/Monat |
-| Web Scraping (große Projekte) | Residential (rotating) | 50-200€/Monat |
-| E-Commerce / Sneaker Bots | Residential oder Mobile | 50-500€/Monat |
-| Allgemeines Browsing / Privatsphäre | Datacenter | 10-30€/Monat |
-
----
 
 ## Proxy-Formate konvertieren
 
@@ -123,7 +23,7 @@ USERNAME:PASSWORD@IP:PORT
 
 ### Format-Konvertierungen
 
-#### Format 1: `IP:PORT:USERNAME:PASSWORD` (z.B. Webshare.io)
+#### Format 1: `IP:PORT:USERNAME:PASSWORD` 
 **Gegeben:**
 ```
 45.142.122.1:5678:user123:pass456
@@ -152,7 +52,7 @@ $converted = $proxies | ForEach-Object {
 $converted | Set-Content "proxies.txt"
 ```
 
-#### Format 2: `USERNAME:PASSWORD@HOST:PORT` (z.B. Bright Data, Smartproxy)
+#### Format 2: `USERNAME:PASSWORD@HOST:PORT` 
 Manche Anbieter verwenden einen zentralen Gateway-Host statt direkter IPs.
 
 **Gegeben:**
